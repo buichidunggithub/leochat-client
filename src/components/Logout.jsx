@@ -2,7 +2,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { BiPowerOff } from "react-icons/bi";
 import styled from "styled-components";
-import axios from "axios";
 export default function Logout() {
   const navigate = useNavigate();
   const handleClick =  () => {
@@ -20,7 +19,6 @@ export default function Logout() {
 
 const Button = styled.button`
   display: flex;
-  justify-content: center;
   align-items: center;
   padding: 0.5rem;
   border-radius: 0.5rem;
