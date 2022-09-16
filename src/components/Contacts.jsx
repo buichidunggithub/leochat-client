@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from "styled-components"
-import Logo from '../assets/logo.svg'
+import Logo from '../assets/leochat-logo.png'
 import Logout from './Logout';
 
 export default function Contacts({ contacts, currentUser, changeChat }) {
@@ -26,7 +26,7 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
                     <Container>
                         <div className="brand">
                             <img src={Logo} alt="logo" />
-                            <h3>LeoChat</h3>
+                            <h3>Make it simple!</h3>
                         </div>
                         <div className="contacts">
                             {
@@ -78,8 +78,9 @@ const Container = styled.div`
     align-items: center;
     gap: 1rem;
     justify-content: center;
+    margin-top: 5rem;
     img {
-      height: 2rem;
+      height: 10rem;
     }
     h3 {
       color: white;
@@ -136,7 +137,6 @@ const Container = styled.div`
     .avatar {
       img {
         height: 4rem;
-        max-inline-size: 100%;
       }
     }
     .username {

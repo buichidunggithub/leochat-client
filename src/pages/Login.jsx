@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Link, useNavigate } from "react-router-dom";
-import Logo from "../assets/logo.svg";
+import Logo from "../assets/leochat-logo.png";
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios"
@@ -96,7 +96,7 @@ const Login = () => {
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className="brand">
             <img src={Logo} alt="Logo" />
-            <h1>LeoChat</h1>
+            <h1>Make it simple!</h1>
           </div>
           <input type="text" placeholder='Username' name='username' onChange={(e) => handleChange(e)} min="3"/>
           <input type="password" placeholder='Password' name='password' onChange={(e) => handleChange(e)} />
@@ -131,7 +131,7 @@ const FormContainer = styled.div`
     gap: 1rem;
     justify-content: center;
     img {
-      height: 5rem;
+      height: 10rem;
     }
     h1 {
       color: white;
