@@ -50,15 +50,15 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
                             }
                         </div>
                         <div className="current-user">
-                        <div className="avatar">
-                            <img src={`data:image/svg+xml;base64,${currentUserImage}`} alt="avatar" />
-                        </div>
-                        <div className="username">
-                            <h2>{currentUserName}</h2>
+                          <div className="avatar">
+                              <img src={`data:image/svg+xml;base64,${currentUserImage}`} alt="avatar" />
+                          </div>
+                          <div className="username">
+                              <h2>{currentUserName}</h2>
+                          </div>
                         </div>
                         <div className="logout-button">
                           <Logout />
-                        </div>
                         </div>
                     </Container>
                 )
@@ -70,7 +70,7 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
 
 const Container = styled.div`
   display: grid;
-  grid-template-rows: 10% 75% 15%;
+  grid-template-rows: 10% 75% 10% 5%;
   overflow: hidden;
   background-color: #080420;
   .brand {

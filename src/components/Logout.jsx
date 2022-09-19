@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { BiPowerOff } from "react-icons/bi";
 import styled from "styled-components";
+import { signOut, getAuth } from 'firebase/auth';
+
 export default function Logout() {
   const navigate = useNavigate();
   const handleClick =  () => {
-
+    const auth = getAuth();
+    signOut(auth);
     localStorage.clear();
     navigate("/login");
   };

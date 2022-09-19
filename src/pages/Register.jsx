@@ -6,9 +6,10 @@ import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios"
 import { registerRoute } from '../utils/APIRoutes';
-import { GoogleOutlined, FacebookOutlined } from '@ant-design/icons';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+import { GoogleButton } from 'react-google-button';
+import { UserAuth } from '../context/AuthContext';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -50,7 +51,7 @@ const Register = () => {
     if(localStorage.getItem('chat-app-user')) {
       navigate('/');
     }
-  }, );
+  }, []);
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -73,14 +74,30 @@ const Register = () => {
     }
     return true;
   }
-  
-  const handleSignUpWithGoogle = (e) => {
 
-  }
+  // const handleSignUpWithGoogle = async () => {
+  //   try {
+  //     await googleSignIn();
+  //     const email = user.email;
+  //     const password = user.uid;
+  //     const username = email.split('@')[0];
 
-  const handleSignUpWithFacebook = (e) => {
-  
-  }
+  //     const { data } = await axios.post(registerRoute, {
+  //       username,
+  //       email,
+  //       password,
+  //     });
+  //     if (data.status === false){
+  //       toast.error(data.msg, toastOptions);
+  //     } else {
+  //       localStorage.setItem('chat-app-user', JSON.stringify(data.user));
+  //     }
+  //     navigate("/");
+
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   return (
     <>
@@ -95,11 +112,8 @@ const Register = () => {
           <input type="password" placeholder='Password' name='password' onChange={(e) => handleChange(e)} />
           <input type="password" placeholder='Confirm Password' name='confirmPassword' onChange={(e) => handleChange(e)} />
           <button type='submit' >Create User</button>
-          <div className="login-button google" onClick={(e) => handleSignUpWithGoogle(e)}>
-            <GoogleOutlined /> Sign up with Google
-          </div>
-          <div className="login-button facebook" onClick={(e) => handleSignUpWithFacebook(e)}>
-            <FacebookOutlined /> Sign up with Facebook
+          <div className="thid-signin">
+              <GoogleButton onClick={{}}/>
           </div>
           <span>Already have an account? <Link to="/login">Login</Link>
           </span>
@@ -168,6 +182,8 @@ const FormContainer = styled.div`
     }
   }
   span {
+    display: flex;
+    justify-content: center;
     color: white;
     text-transform: uppercase;
     a {
@@ -190,6 +206,11 @@ const FormContainer = styled.div`
   .google {
     background-color: #4285f4;
     color: white;
+  }
+
+  .thid-signin {
+    display: flex;
+    justify-content: center;
   }
 `;
 export default Register

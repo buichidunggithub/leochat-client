@@ -6,3 +6,4 @@ export const allUsersRoute = `${host}/api/auth/allUsers`;
 export const logoutRoute = `${host}/api/auth/logout`;
 export const sendMessageRoute = `${host}/api/message/addmsg`;
 export const getAllMessagesRoute = `${host}/api/message/getmsg`;
+export const checkUserExist = `${host}/api/auth/checkExist`;
