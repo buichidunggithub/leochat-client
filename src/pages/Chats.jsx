@@ -8,7 +8,6 @@ import Welcome from "../components/Welcome";
 import ChatContainer from "../components/ChatContainer";
 import { io } from "socket.io-client";
 
-
 export default function Chats() {
   const socket = useRef();
   const navigate = useNavigate();
@@ -58,16 +57,18 @@ export default function Chats() {
   }
 
   return (
-    <Container>
-      <div className="container">
-        <Contacts contacts={contacts} currentUser={currentUser}  changeChat={handleChatChange}/>
-        { isLoaded &&
-          currentChat === undefined ?
-           <Welcome currentUser={currentUser}/> : 
-          <ChatContainer currentChat={currentChat} socket={socket} currentUser={currentUser} />
-        }
-      </div>
-    </Container>
+    <>
+      <Container>
+        <div className="container">
+          <Contacts contacts={contacts} currentUser={currentUser}  changeChat={handleChatChange}/>
+          { isLoaded &&
+            currentChat === undefined ?
+            <Welcome currentUser={currentUser}/> : 
+            <ChatContainer currentChat={currentChat} socket={socket} currentUser={currentUser} />
+          }
+        </div>
+      </Container>
+    </>
   )
 }
 

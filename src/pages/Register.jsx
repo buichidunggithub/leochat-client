@@ -9,7 +9,6 @@ import { registerRoute } from '../utils/APIRoutes';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import { GoogleButton } from 'react-google-button';
-import { UserAuth } from '../context/AuthContext';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -49,7 +48,7 @@ const Register = () => {
 
   useEffect(() => {
     if(localStorage.getItem('chat-app-user')) {
-      navigate('/');
+      navigate('/chat');
     }
   }, []);
 

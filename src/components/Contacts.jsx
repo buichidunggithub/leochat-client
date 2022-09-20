@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import styled from "styled-components"
-import Logo from '../assets/leochat-logo.png'
 import Logout from './Logout';
 
 export default function Contacts({ contacts, currentUser, changeChat }) {
@@ -25,8 +24,7 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
                 currentUserImage && currentUserName && (
                     <Container>
                         <div className="brand">
-                            <img src={Logo} alt="logo" />
-                            <h3>Make it simple!</h3>
+                            <h3>FRIENDS HERE!</h3>
                         </div>
                         <div className="contacts">
                             {
@@ -57,9 +55,9 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
                               <h2>{currentUserName}</h2>
                           </div>
                         </div>
-                        <div className="logout-button">
+                        {/* <div className="logout-button">
                           <Logout />
-                        </div>
+                        </div> */}
                     </Container>
                 )
             }
@@ -70,15 +68,13 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
 
 const Container = styled.div`
   display: grid;
-  grid-template-rows: 10% 75% 10% 5%;
+  grid-template-rows: 5% 80% 15%;
   overflow: hidden;
   background-color: #080420;
   .brand {
     display: flex;
     align-items: center;
-    gap: 1rem;
     justify-content: center;
-    margin-top: 5rem;
     img {
       height: 10rem;
     }
@@ -93,7 +89,6 @@ const Container = styled.div`
     align-items: center;
     overflow: auto;
     gap: 0.8rem;
-    margin-top: 120px;
     &::-webkit-scrollbar {
       width: 0.2rem;
       &-thumb {
