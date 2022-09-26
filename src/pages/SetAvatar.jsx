@@ -48,7 +48,7 @@ export default function SetAvatar() {
           'chat-app-user',
           JSON.stringify(user)
         );
-        navigate("/");
+        navigate("/chat");
       } else {
         toast.error("Error setting avatar. Please try again.", toastOptions);
       }

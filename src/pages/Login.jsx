@@ -5,18 +5,10 @@ import Logo from "../assets/leochat-logo.png";
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios"
-import { checkUserExist, loginRoute, registerRoute } from '../utils/APIRoutes';
+import { loginRoute } from '../utils/APIRoutes';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
-import { GoogleButton } from 'react-google-button';
-import { auth } from '../firebase';
-import {
-    GoogleAuthProvider,
-    signInWithPopup,
-    signInWithRedirect,
-    signOut,
-    onAuthStateChanged
-} from 'firebase/auth';
+import Navbar from '../components/Navbar';
 
 const Login = () => {
   
@@ -76,48 +68,9 @@ const Login = () => {
     return true;
   }
 
-  const handleGoogleSignIn = async () => {
-    try {
-      const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider).then(async (result) => {
-        const user = result.user;
-        if (user){
-          const username = user.email.split('@')[0];
-          const password = user.uid;
-          const email = user.email;
-          const existedUser = await axios.post(checkUserExist, {
-            email
-          });
-          if (!existedUser.data.status) await axios.post(registerRoute, {
-            username,
-            email,
-            password
-          });
-          
-          setValues({
-            username,
-            password
-          })
-          const {data} = await axios.post(loginRoute, {
-            username,
-            password
-          });
-  
-          if(data.status === false){
-            toast.error(data.msg, toastOptions);
-          } else {
-            localStorage.setItem('chat-app-user', JSON.stringify(data.user));
-          }
-          navigate('/chat');
-        }
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  
   return (
     <>
+      <Navbar/>
       <FormContainer>
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className="brand">
@@ -131,9 +84,6 @@ const Login = () => {
             Don't  have an account? &nbsp;
             <Link to="/register">Register</Link>
           </span>
-          <div className="thid-signin">
-              <GoogleButton onClick={handleGoogleSignIn}/>
-          </div>
         </form>
       </FormContainer>
       <ToastContainer />
@@ -165,6 +115,7 @@ const FormContainer = styled.div`
   }
   form {
     display: flex;
+    margin-bottom: 20px;
     flex-direction: column;
     gap: 2rem;
     background-color: #00000076;

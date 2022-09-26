@@ -55,9 +55,6 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
                               <h2>{currentUserName}</h2>
                           </div>
                         </div>
-                        {/* <div className="logout-button">
-                          <Logout />
-                        </div> */}
                     </Container>
                 )
             }
@@ -68,7 +65,7 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
 
 const Container = styled.div`
   display: grid;
-  grid-template-rows: 5% 80% 15%;
+  grid-template-rows: 5% 85% 10%;
   overflow: hidden;
   background-color: #080420;
   .brand {
@@ -125,6 +122,8 @@ const Container = styled.div`
     }
   }
   .current-user {
+    padding: 0 2rem;
+    padding-bottom: 0.3rem;
     background-color: #0d0d30;
     display: flex;
     justify-content: center;
@@ -139,14 +138,6 @@ const Container = styled.div`
       h2 {
         color: white;
         text-transform: capitalize;
-      }
-    }
-    @media screen and (min-width: 720px) and (max-width: 1080px) {
-      gap: 0.5rem;
-      .username {
-        h2 {
-          font-size: 1rem;
-        }
       }
     }
   }

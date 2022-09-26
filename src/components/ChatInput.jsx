@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Picker from 'emoji-picker-react'
 import {IoMdSend} from 'react-icons/io'
 import {BsEmojiSmileFill} from 'react-icons/bs'
+import OutsideAlerter from '../components/OutsideAlerter';
 
 export default function ChatInput({handleSendMsg}) {
     const [showEmojiPicker, setShowEmojiPicker] = useState(false);
@@ -28,10 +29,12 @@ export default function ChatInput({handleSendMsg}) {
   return (
     <Container>
         <div className="button-container">
-            <div className="emoji" >
-                <BsEmojiSmileFill onClick={handleEmojiPickerHideShow}/>
-                { showEmojiPicker && <Picker onEmojiClick={handleEmojiClick}/> }
-            </div>
+            <OutsideAlerter handleAction={setShowEmojiPicker}>
+                <div className="emoji" >
+                    <BsEmojiSmileFill onClick={handleEmojiPickerHideShow}/>
+                    { showEmojiPicker && <Picker onEmojiClick={handleEmojiClick}/> }
+                </div>
+            </OutsideAlerter>
         </div>
         <form className='input-container' onSubmit={(e)=>sendChat(e)}>
             <input type="text" placeholder='Type your message here!' value={msg} onChange={(e)=>{setMsg(e.target.value)}}/>
@@ -50,10 +53,6 @@ align-items: center;
 background-color: #080420;
 padding: 0 2rem;
 padding-bottom: 0.3rem;
-@media screen and (min-width: 720px) and (max-width: 1080px){
-    padding: 0 1rem;
-    gap: 1rem;
-}
 .button-container{
     display: flex;
     align-items: center;
@@ -127,12 +126,6 @@ padding-bottom: 0.3rem;
         background-color: #9a86f3;
         border: none;
         cursor: pointer;
-        @media screen and (min-width: 720px) and (max-width: 1080px){
-            padding: 0.3rem 1rem;
-            svg{
-            font-size: 1rem;
-            color: white;
-        }
         }
         svg{
             font-size: 2rem;

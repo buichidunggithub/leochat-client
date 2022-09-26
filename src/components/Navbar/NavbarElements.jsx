@@ -7,7 +7,7 @@ export const Nav = styled.nav`
     height: 80px;
     display: flex;
     justify-content: space-between;
-    padding: 0.5rem calc((100vw - 1000px) / 2);
+    padding: 0.5rem calc((100vw - 1000px) / 8);
     z-index: 10;
     .brand {
         display: flex;
@@ -20,6 +20,16 @@ export const Nav = styled.nav`
         h1 {
           color: white;
           text-transform: capitalize;
+        }
+    }
+    .current-user {
+        display: flex;
+        align-items: center;
+        h2 {
+            color: #15cdfc;
+        }
+        .logout-button {
+            padding-left: 10px;
         }
     }
 `
@@ -42,15 +52,6 @@ export const Bars = styled(FaBars)`
     display: none;
     color: #fff;
 
-    @media screen and (max-width: 768px) {
-        display: block;
-        position: absolute;
-        top: 0;
-        right: 0;
-        transform: translate(-100%, 75%);
-        font-size: 1.8rem;
-        cursor: pointer;
-    }
 `
 
 export const NavMenu = styled.div`
@@ -58,9 +59,6 @@ export const NavMenu = styled.div`
     align-items: center;
     margin-right: -24px;
 
-    @media screen and (max-width: 768px) {
-        display: none;
-    }
 `
 
 export const NavBtn = styled.nav`
@@ -68,9 +66,6 @@ export const NavBtn = styled.nav`
     align-items: center;
     margin-right: 24px;
 
-    @media screen and (max-width: 768px) {
-        display: none;
-    }
 `
 
 export const NavBtnLink = styled(Link)`

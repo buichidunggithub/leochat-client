@@ -79,7 +79,6 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
                   <h3>{currentChat.username}</h3>
                 </div>
               </div>
-              {/* <Logout /> */}
             </div>
             <div className="chat-messages">
               {messages.map((message) => {
@@ -112,9 +111,6 @@ const Container = styled.div`
   grid-template-rows: 10% 80% 10%;
   gap: 0.1rem;
   overflow: hidden;
-  @media screen and (min-width: 720px) and (max-width: 1080px) {
-    grid-template-rows: 15% 70% 15%;
-  }
   .chat-header {
     display: flex;
     justify-content: space-between;
@@ -161,9 +157,6 @@ const Container = styled.div`
         font-size: 1.1rem;
         border-radius: 1rem;
         color: #d1d1d1;
-        @media screen and (min-width: 720px) and (max-width: 1080px) {
-          max-width: 70%;
-        }
       }
     }
     .sended {

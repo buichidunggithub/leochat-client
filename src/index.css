@@ -9,8 +9,12 @@ body,button,input{
   font-family: 'Josefin Sans', sans-serif;
 }
 
-body{
-  max-height: 100vh;
+body {
+  height: 100vh;
   max-width: 100wv;
   overflow: hidden;
+}
+
+#root {
+  height: 100vh;
 }
