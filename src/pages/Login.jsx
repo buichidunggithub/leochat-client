@@ -6,8 +6,6 @@ import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios"
 import { loginRoute } from '../utils/APIRoutes';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
 import Navbar from '../components/Navbar';
 
 const Login = () => {
