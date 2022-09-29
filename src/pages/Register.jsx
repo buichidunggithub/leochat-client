@@ -171,18 +171,5 @@ const FormContainer = styled.div`
     border-radius: 8px;
     display: inline-block;
   }
-  .facebook {
-    background-color: #3b5998;
-  }
-  
-  .google {
-    background-color: #4285f4;
-    color: white;
-  }
-
-  .thid-signin {
-    display: flex;
-    justify-content: center;
-  }
 `;
 export default Register
