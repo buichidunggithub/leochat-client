@@ -15,8 +15,10 @@ export default function Chats() {
   const [contacts, setContacts] = useState([]);
   const [currentUser, setCurrentUser] = useState(undefined);
   const [currentChat, setCurrentChat] = useState(undefined);
+  const [arrivalMessage, setArrivalMessage] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  
+  const [originalTitle, setOriginalTitle] = useState(null);
+  const [notification, setNotification] = useState(null);
 
   useEffect( ()=>{
     const navigationTo = async () => {
@@ -39,21 +41,51 @@ export default function Chats() {
     }
    },[currentUser]);
 
+   useEffect(() => {
+    if (socket.current) {
+      socket.current.on("msg-recieved", (msg) => {
+        setArrivalMessage({
+          fromSelf: false,
+          message: msg.msg,
+          from: msg.from
+        });
+      });
+    }
+  }, [socket.current]);
+
   useEffect( () => {
     const getCurrentUser = async()=>{
       if( currentUser)  {
-      if(currentUser.isAvatarImageSet){
-        const data = await  axios.get(`${allUsersRoute}/${currentUser._id}`);
-        setContacts(data.data);
-      } else{
-        navigate('/setAvatar');
+        if(currentUser.isAvatarImageSet){
+          const data = await  axios.get(`${allUsersRoute}/${currentUser._id}`);
+          setContacts(data.data);
+        } else{
+          navigate('/setAvatar');
+        }
       }
-    }
     }
       getCurrentUser();
   }, [currentUser]);
 
-  const handleChatChange = (chat) =>{
+  useEffect(()=>{
+  },[arrivalMessage]);
+
+  useEffect(() => {
+    const currentTitle = document.title;
+    setOriginalTitle(currentTitle);
+    if (arrivalMessage) {
+      const notificationMsg = `You have messages from ${arrivalMessage.from}`;
+      const notificationInterval = setInterval(() => {
+        document.title = document.title === currentTitle ? notificationMsg : currentTitle;
+      }, 2000);
+      setNotification(notificationInterval);
+      return () => {
+        clearInterval(notificationInterval);
+      }
+    }
+  }, [arrivalMessage])
+
+  const handleChatChange = (chat) => {
     setCurrentChat(chat);
   }
 
@@ -62,11 +94,11 @@ export default function Chats() {
       <Navbar currentUser={currentUser}/>
       <Container>
         <div className="container">
-          <Contacts contacts={contacts} currentUser={currentUser}  changeChat={handleChatChange}/>
+          <Contacts contacts={contacts} currentUser={currentUser}  changeChat={handleChatChange} interval={notification} originalTitle={originalTitle}/>
           { isLoaded &&
             currentChat === undefined ?
             <Welcome currentUser={currentUser}/> : 
-            <ChatContainer currentChat={currentChat} socket={socket} currentUser={currentUser} />
+            <ChatContainer currentChat={currentChat} socket={socket} currentUser={currentUser} interval={notification} originalTitle={originalTitle}/>
           }
         </div>
       </Container>

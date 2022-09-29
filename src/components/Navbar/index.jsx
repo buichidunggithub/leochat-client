@@ -9,7 +9,6 @@ export default function Navbar({ currentUser }) {
         if (currentUser) {
             setCurrentUserName(currentUser.username);
         }
-        console.log('currentUserName', currentUserName);
     }, [currentUser]);
     return (
         <>

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from "styled-components"
-import Logout from './Logout';
 
-export default function Contacts({ contacts, currentUser, changeChat }) {
+export default function Contacts({ contacts, currentUser, changeChat, interval, originalTitle }) {
     const [currentUserName, setCurrentUserName] = useState(undefined);
     const [currentUserImage, setCurrentUserImage] = useState(undefined);
     const [currentSelected, setCurrentSelected] = useState(undefined);
@@ -14,7 +13,13 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
         }
     }, [currentUser]);
 
-    const changeCurrentChat = (index, contact) => { 
+    const handleClearNotification = () => {
+      document.title = originalTitle;
+      if (interval) clearInterval(interval);
+    }
+
+    const changeCurrentChat = (index, contact) => {
+        handleClearNotification();
         setCurrentSelected(index);
         changeChat(contact);
     };

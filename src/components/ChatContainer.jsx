@@ -5,7 +5,7 @@ import axios from "axios";
 import { getAllMessagesRoute, sendMessageRoute } from '../utils/APIRoutes'
 import { v4 as uuidv4} from "uuid";
 
-export default function ChatContainer({ currentChat, currentUser, socket }) {
+export default function ChatContainer({ currentChat, currentUser, socket, interval, originalTitle }) {
   const [messages, setMessages] = useState([]);
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const scrollRef = useRef();
@@ -33,7 +33,7 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
     socket.current.emit("send-msg", {
       to: currentChat._id,
       from: currentUser._id,
-      message: msg,
+      message: { msg: msg, from: currentUser.username },
     });
 
     const msgs = [...messages];
@@ -49,7 +49,8 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
       socket.current.on("msg-recieved", (msg) => {
         setArrivalMessage({
           fromSelf: false,
-          message: msg,
+          message: msg.msg,
+          from: msg.from
         });
       })
     }
@@ -63,11 +64,18 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  const handleClearNotification = () => {
+    if (interval && originalTitle) {
+      document.title = originalTitle;
+      clearInterval(interval);
+    }
+  }
+
   return (
     <>
       {
         currentChat && (
-          <Container>
+          <Container onClick={handleClearNotification}>
             <div className="chat-header">
               <div className="user-details">
                 <div className="avatar">
