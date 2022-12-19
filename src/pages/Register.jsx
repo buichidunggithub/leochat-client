@@ -74,26 +74,33 @@ const Register = () => {
 
   return (
     <>
-      <Navbar/>
-      <FormContainer>
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <div className="brand">
-            <img src={Logo} alt="Logo" />
-            <h1>Make it simple!</h1>
-          </div>
-          <input type="text" placeholder='Username' name='username' onChange={(e) => handleChange(e)} />
-          <input type="email" placeholder='Email' name='email' onChange={(e) => handleChange(e)} />
-          <input type="password" placeholder='Password' name='password' onChange={(e) => handleChange(e)} />
-          <input type="password" placeholder='Confirm Password' name='confirmPassword' onChange={(e) => handleChange(e)} />
-          <button type='submit' >Create User</button>
-          <span>Already have an account? &nbsp;<Link to="/login">Login</Link>
-          </span>
-        </form>
-      </FormContainer>
-      <ToastContainer />
+      <Box>
+        <Navbar/>
+        <FormContainer>
+          <form onSubmit={(e) => handleSubmit(e)}>
+            <div className="brand">
+              <img src={Logo} alt="Logo" />
+              <h1>Make it simple!</h1>
+            </div>
+            <input type="text" placeholder='Username' name='username' onChange={(e) => handleChange(e)} />
+            <input type="email" placeholder='Email' name='email' onChange={(e) => handleChange(e)} />
+            <input type="password" placeholder='Password' name='password' onChange={(e) => handleChange(e)} />
+            <input type="password" placeholder='Confirm Password' name='confirmPassword' onChange={(e) => handleChange(e)} />
+            <button type='submit' >Create User</button>
+            <span>Already have an account? &nbsp;<Link to="/login">Login</Link>
+            </span>
+          </form>
+        </FormContainer>
+        <ToastContainer />
+      </Box>
     </>
   );
 }
+
+const Box = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+`;
 
 const FormContainer = styled.div`
   height: 100vh;
@@ -104,6 +111,7 @@ const FormContainer = styled.div`
   gap: 1rem;
   align-items: center;
   background-color: #131324;
+  overflow: overlay;
   .brand {
     display: flex;
     align-items: center;

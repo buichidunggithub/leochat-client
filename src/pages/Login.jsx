@@ -68,26 +68,33 @@ const Login = () => {
 
   return (
     <>
-      <Navbar/>
-      <FormContainer>
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <div className="brand">
-            <img src={Logo} alt="Logo" />
-            <h1>Make it simple!</h1>
-          </div>
-          <input type="text" placeholder='Username' name='username' onChange={(e) => handleChange(e)} min="3"/>
-          <input type="password" placeholder='Password' name='password' onChange={(e) => handleChange(e)} />
-          <button type='submit' >Login</button>
-          <span>
-            Don't  have an account? &nbsp;
-            <Link to="/register">Register</Link>
-          </span>
-        </form>
-      </FormContainer>
-      <ToastContainer />
+      <Box>
+        <Navbar/>
+        <FormContainer>
+          <form onSubmit={(e) => handleSubmit(e)}>
+            <div className="brand">
+              <img src={Logo} alt="Logo" />
+              <h1>Make it simple!</h1>
+            </div>
+            <input type="text" placeholder='Username' name='username' onChange={(e) => handleChange(e)} min="3"/>
+            <input type="password" placeholder='Password' name='password' onChange={(e) => handleChange(e)} />
+            <button type='submit' >Login</button>
+            <span>
+              Don't  have an account? &nbsp;
+              <Link to="/register">Register</Link>
+            </span>
+          </form>
+        </FormContainer>
+        <ToastContainer />
+      </Box>
     </>
   );
 }
+
+const Box = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+`;
 
 const FormContainer = styled.div`
   height: 100vh;
@@ -98,6 +105,7 @@ const FormContainer = styled.div`
   gap: 1rem;
   align-items: center;
   background-color: #131324;
+  overflow: overlay;
   .brand {
     display: flex;
     align-items: center;

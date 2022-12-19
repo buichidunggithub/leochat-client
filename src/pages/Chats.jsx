@@ -91,20 +91,27 @@ export default function Chats() {
 
   return (
     <>
-      <Navbar currentUser={currentUser}/>
-      <Container>
-        <div className="container">
-          <Contacts contacts={contacts} currentUser={currentUser}  changeChat={handleChatChange} interval={notification} originalTitle={originalTitle}/>
-          { isLoaded &&
-            currentChat === undefined ?
-            <Welcome currentUser={currentUser}/> : 
-            <ChatContainer currentChat={currentChat} socket={socket} currentUser={currentUser} interval={notification} originalTitle={originalTitle}/>
-          }
-        </div>
-      </Container>
+      <Box>
+        <Navbar currentUser={currentUser}/>
+        <Container>
+          <div className="container">
+            <Contacts contacts={contacts} currentUser={currentUser}  changeChat={handleChatChange} interval={notification} originalTitle={originalTitle}/>
+            { isLoaded &&
+              currentChat === undefined ?
+              <Welcome currentUser={currentUser}/> : 
+              <ChatContainer currentChat={currentChat} socket={socket} currentUser={currentUser} interval={notification} originalTitle={originalTitle}/>
+            }
+          </div>
+        </Container>
+      </Box>
     </>
   )
 }
+
+const Box = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+`;
 
 const Container = styled.div`
   display: flex;
@@ -119,5 +126,12 @@ const Container = styled.div`
     display: grid;
     grid-template-columns: 25% 75%;
     padding-bottom: 20px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .container {
+      display: flex;
+      width: 100%;
+      justify-content: center
   }
 `;

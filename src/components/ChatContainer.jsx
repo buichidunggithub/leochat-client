@@ -118,6 +118,9 @@ const Container = styled.div`
   display: grid;
   grid-template-rows: 10% 80% 10%;
   gap: 0.1rem;
+  @media only screen and (max-width: 600px) {
+    width: 100%;
+  }
   overflow: hidden;
   .chat-header {
     display: flex;

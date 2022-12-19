@@ -69,6 +69,9 @@ export default function Contacts({ contacts, currentUser, changeChat, interval, 
 
 
 const Container = styled.div`
+  @media only screen and (max-width: 600px) {
+    display: none;
+  }
   display: grid;
   grid-template-rows: 5% 85% 10%;
   overflow: hidden;

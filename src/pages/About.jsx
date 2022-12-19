@@ -7,27 +7,34 @@ import { Link } from "react-router-dom";
 const MainSite = () => {
     return (
         <>
-            <Navbar/>
-            <StyledPage>
-                <motion.div
-                initial={{ y: 100 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1, duration: 1 }}
-                >
-                About
-                </motion.div>
-                <motion.div
-                className="buttons"
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1, duration: 1 }}
-                >
-                </motion.div>
-            </StyledPage>
+            <Box>
+              <Navbar/>
+              <StyledPage>
+                  <motion.div
+                  initial={{ y: 100 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1, duration: 1 }}
+                  >
+                  About
+                  </motion.div>
+                  <motion.div
+                  className="buttons"
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1, duration: 1 }}
+                  >
+                  </motion.div>
+              </StyledPage>
+            </Box>
         </>
     );
 };
 
 export default MainSite;
+
+const Box = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+`;
 
 const StyledPage = styled(motion.div)`
   height: calc(100vh - 80px);
@@ -38,7 +45,7 @@ const StyledPage = styled(motion.div)`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  font-size: 4em;
+  font-size: xxx-large;
 
   & > div > span {
     color: red;
